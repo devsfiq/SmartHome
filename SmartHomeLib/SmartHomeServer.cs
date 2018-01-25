@@ -80,15 +80,20 @@ namespace SmartHomeLib
                     int end = request.IndexOf(endStr) - (endStr.Length + 1);
 
                     request = request.Substring(start, end).Trim();
-                    client.Close();
 
-                    if (count == 10)
+                    if (request != "favicon.ico")
                     {
+                        client.Send(Encoding.ASCII.GetBytes($"Received Command '{request}'"));
+                        client.Close();
+
+                        //if (count == 0)
+                        //{
                         ThreadPool.QueueUserWorkItem(delegate
                         {
                             onReceiveCommand(request);
                         }, request);
                         count = 0;
+                        //}
                     }
                 });
                 childSocketThread.Start();

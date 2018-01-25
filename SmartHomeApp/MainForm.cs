@@ -31,7 +31,14 @@ namespace SmartHomeApp
 
         private void ProcessCommand(string command)
         {
-            MessageBox.Show($"Command Received: {command}", "Smart Home Server");
+            Invoke(
+            new Action(
+                () =>
+                {
+                    OutputTB.Text += $"[{DateTime.Now}] Received GET Request /{command}{Environment.NewLine}";
+                }
+            ));
+            //MessageBox.Show($"Command Received: {command}", "Smart Home Server");
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
