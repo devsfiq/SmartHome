@@ -28,6 +28,13 @@ namespace SmartHomeLib
             Listener = new TcpListener(IPAddress.Parse(ip), port);
         }
 
+        public SmartHomeServer(IPAddress ip, int port)
+        {
+            Ip = ip.ToString();
+            Port = port;
+            Listener = new TcpListener(ip, port);
+        }
+
         public void Start(OnReceiveCommand onReceiveCommand)
         {
             this.onReceiveCommand = onReceiveCommand;
@@ -47,44 +54,43 @@ namespace SmartHomeLib
         private void RunListenerThread()
         {
             Listener.Start();
-            Socket client = Listener.AcceptSocket();
-            var childSocketThread = new Thread(() =>
-            {
-                ++count;
-                String request = "";
-
-                byte[] data = new byte[256];
-                int size = client.Receive(data);
-
-                for (int i = 0; i < size; i++)
-                {
-                    Char c = Convert.ToChar(data[i]);
-                    request += c;
-                    if (c == '\n') break;
-                }
-
-                string startStr = "/";
-                string endStr = "HTTP";
-
-                int start = request.IndexOf(startStr) + startStr.Length;
-                int end = request.IndexOf(endStr) - (endStr.Length + 1);
-
-                request = request.Substring(start, end).Trim();
-                client.Close();
-
-                if (count == 10)
-                {
-                    ThreadPool.QueueUserWorkItem(delegate
-                    {
-                        onReceiveCommand(request);
-                    }, request);
-                    count = 0;
-                }
-            });
 
             while (true)
             {
-                client = Listener.AcceptSocket();
+                Socket client = Listener.AcceptSocket();
+                var childSocketThread = new Thread(() =>
+                {
+                    ++count;
+                    String request = "";
+
+                    byte[] data = new byte[256];
+                    int size = client.Receive(data);
+
+                    for (int i = 0; i < size; i++)
+                    {
+                        Char c = Convert.ToChar(data[i]);
+                        request += c;
+                        if (c == '\n') break;
+                    }
+
+                    string startStr = "/";
+                    string endStr = "HTTP";
+
+                    int start = request.IndexOf(startStr) + startStr.Length;
+                    int end = request.IndexOf(endStr) - (endStr.Length + 1);
+
+                    request = request.Substring(start, end).Trim();
+                    client.Close();
+
+                    if (count == 10)
+                    {
+                        ThreadPool.QueueUserWorkItem(delegate
+                        {
+                            onReceiveCommand(request);
+                        }, request);
+                        count = 0;
+                    }
+                });
                 childSocketThread.Start();
             }
         }
