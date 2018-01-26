@@ -81,6 +81,7 @@
             this.btnRefreshD.TabIndex = 4;
             this.btnRefreshD.Text = "Refresh Devices";
             this.btnRefreshD.UseVisualStyleBackColor = true;
+            this.btnRefreshD.Click += new System.EventHandler(this.btnRefreshD_Click);
             // 
             // btnRefreshM
             // 
@@ -90,11 +91,12 @@
             this.btnRefreshM.TabIndex = 5;
             this.btnRefreshM.Text = "Refresh modules";
             this.btnRefreshM.UseVisualStyleBackColor = true;
+            this.btnRefreshM.Click += new System.EventHandler(this.btnRefreshM_Click);
             // 
             // lblSelectAction
             // 
             this.lblSelectAction.AutoSize = true;
-            this.lblSelectAction.Location = new System.Drawing.Point(89, 120);
+            this.lblSelectAction.Location = new System.Drawing.Point(89, 116);
             this.lblSelectAction.Name = "lblSelectAction";
             this.lblSelectAction.Size = new System.Drawing.Size(98, 17);
             this.lblSelectAction.TabIndex = 6;
@@ -106,7 +108,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "open",
             "exit"});
-            this.comboBox1.Location = new System.Drawing.Point(201, 117);
+            this.comboBox1.Location = new System.Drawing.Point(201, 113);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 7;
@@ -136,6 +138,7 @@
             this.Controls.Add(this.lblSelectDevice);
             this.Name = "AddAction";
             this.Text = "AddAction";
+            this.Load += new System.EventHandler(this.AddAction_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

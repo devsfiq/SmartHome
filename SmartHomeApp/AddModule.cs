@@ -33,18 +33,24 @@ namespace SmartHomeApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            TextWriter txt = new StreamWriter(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\modules.txt", append: true);
-            try
+            if ((tbCommandName.Text == "") || (tbOpenDialog.Text == "") || (tbArgs.Text == ""))
             {
-                txt.WriteLine(tbCommandName.Text + "|" + openFileDialogModule.FileName + "|" + tbArgs.Text);
-                txt.Close();
-                MessageBox.Show("Added module successfully!", "Success");
+                MessageBox.Show("Please fill in the fields", "Error");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Unable to add module! Exception: " + ex.ToString(), "Error");
+                TextWriter txt = new StreamWriter(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\modules.txt", append: true);
+                try
+                {
+                    txt.WriteLine(tbCommandName.Text + "|" + openFileDialogModule.FileName + "|" + tbArgs.Text);
+                    txt.Close();
+                    MessageBox.Show("Added module successfully!", "Success");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unable to add module! Exception: " + ex.ToString(), "Error");
+                }
             }
-
         }
     }
 }

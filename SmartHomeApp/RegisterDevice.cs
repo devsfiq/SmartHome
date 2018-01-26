@@ -13,6 +13,7 @@ namespace SmartHomeApp
 {
     public partial class RegisterDevice : Form
     {
+        String selectpath; 
         public RegisterDevice()
         {
             InitializeComponent();
@@ -32,27 +33,37 @@ namespace SmartHomeApp
 
         private void btnSelectDevice_Click(object sender, EventArgs e)
         {
+            ddlSelectDevice.Items.Clear();
             string[] lineOfContents = File.ReadAllLines("modules.txt");
             foreach (var line in lineOfContents)
             {
                 string[] tokens = line.Split('|');
                 ddlSelectDevice.Items.Add(tokens[0]);
+
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            TextWriter txt = new StreamWriter(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\devices.txt", append: true);
-            try
+            if ((tbDeviceName.Text == "")  || (ddlSelectDevice.Text == ""))
             {
-                txt.WriteLine(tbDeviceName.Text + "|" + ddlSelectDevice.Text + "|");
-                txt.Close();
-                MessageBox.Show("Added devices successfully!", "Success");
+                MessageBox.Show("Please fill in the field and select the device", "Error");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Unable to add device! Exception: " + ex.ToString(), "Error");
+                TextWriter txt = new StreamWriter(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\devices.txt", append: true);
+                try
+                {
+                    txt.WriteLine(tbDeviceName.Text + "|" + ddlSelectDevice.Text + "|");
+                    txt.Close();
+                    MessageBox.Show("Added device successfully!", "Success");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unable to add device! Exception: " + ex.ToString(), "Error");
+                }
             }
+            
         }
     }
 }
