@@ -45,5 +45,18 @@ namespace SmartHomeApp
         {
             Server.Stop();
         }
+
+        private void btnAddModule_Click(object sender, EventArgs e)
+        {
+            AddModule form = new AddModule();
+            form.Show();
+        }
+
+        /* private void btnAddModule_Click(object sender, EventArgs e)
+        {
+            AddModule form = new AddModule();
+            form.Show();
+        } */
+
     }
 }
