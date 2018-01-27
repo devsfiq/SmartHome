@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace SmartHomeApp
 {
@@ -17,6 +18,20 @@ namespace SmartHomeApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+
+            string createQuery = @"CREATE TABLE IF NOT EXISTS [Modules] ([Id] INTEGER PRIMARY KEY, [MacAddress] CHAR(17) NOT NULL, [Command] NVARCHAR(256) NOT NULL, [Path] NVARCHAR(2048) NOT NULL, [Args] NVARCHAR(256) NULL)";
+
+            SQLiteConnection.CreateFile("SmartHomeDB.db3");
+
+            using (SQLiteConnection conn = new SQLiteConnection("data source=SmartHomeDB.db3"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand(conn))
+                {
+                    conn.Open();
+                    cmd.CommandText = createQuery;
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
