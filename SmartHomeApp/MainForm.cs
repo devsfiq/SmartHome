@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -35,7 +37,7 @@ namespace SmartHomeApp
             new Action(
                 () =>
                 {
-                    OutputTB.Text += $"[{DateTime.Now}] Received GET Request /{command}{Environment.NewLine}";
+                    OutputTB.Text += $"[{DateTime.Now}] Received Request /{command}{Environment.NewLine}";
                 }
             ));
             //MessageBox.Show($"Command Received: {command}", "Smart Home Server");
