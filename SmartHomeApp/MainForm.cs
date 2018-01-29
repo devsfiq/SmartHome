@@ -26,5 +26,10 @@ namespace SmartHomeApp
         {
             new ManageModules().Show();
         }
+
+        private void resgisterBtn_Click(object sender, EventArgs e)
+        {
+            new RegisterDevice().Show();
+        }
     }
 }
