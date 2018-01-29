@@ -51,7 +51,7 @@ namespace SmartHomeApp
         // Insert and Update
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string macId = "12:34:32:21:21:22"; // Add dynamic MAC Address here, this is just for testing
+            //string macId = "12:34:32:21:21:22"; // Add dynamic MAC Address here, this is just for testing
             var command = tbCommandName.Text;
             var path = tbOpenDialog.Text;
             var args = tbArgs.Text;
@@ -74,8 +74,7 @@ namespace SmartHomeApp
             {
                 try
                 {
-                    string sql = "INSERT into modules (MacAddress, Command, Path, Args) VALUES (@macId, @command, @path, @args)";
-                    cmd.Parameters.AddWithValue("@macId", macId);
+                    string sql = "INSERT into modules (Command, Path, Args) VALUES (@command, @path, @args)";
                     cmd.Parameters.AddWithValue("@command", command);
                     cmd.Parameters.AddWithValue("@path", path);
                     cmd.Parameters.AddWithValue("@args", args);
@@ -129,9 +128,9 @@ namespace SmartHomeApp
             foreach(DataGridViewRow rowUpdate in dgvModules.SelectedRows)
             {
                 lblId.Text = rowUpdate.Cells[0].Value.ToString();
-                tbCommandName.Text = rowUpdate.Cells[2].Value.ToString();
-                tbOpenDialog.Text = rowUpdate.Cells[3].Value.ToString();
-                tbArgs.Text = rowUpdate.Cells[4].Value.ToString();
+                tbCommandName.Text = rowUpdate.Cells[1].Value.ToString();
+                tbOpenDialog.Text = rowUpdate.Cells[2].Value.ToString();
+                tbArgs.Text = rowUpdate.Cells[3].Value.ToString();
                 btnSave.Text = "Update";
             }
         }

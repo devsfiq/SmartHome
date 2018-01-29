@@ -19,7 +19,7 @@ namespace SmartHomeApp
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
 
-            string createQuery = @"CREATE TABLE IF NOT EXISTS [Modules] ([Id] INTEGER PRIMARY KEY, [MacAddress] CHAR(17) NOT NULL, [Command] NVARCHAR(256) NOT NULL, [Path] NVARCHAR(2048) NOT NULL, [Args] NVARCHAR(256) NULL)";
+            string createQuery = @"CREATE TABLE IF NOT EXISTS [Modules] ([Id] INTEGER PRIMARY KEY, [Command] NVARCHAR(256) UNIQUE NOT NULL, [Path] NVARCHAR(2048) NOT NULL, [Args] NVARCHAR(256) NULL)";
 
             SQLiteConnection.CreateFile("SmartHomeDB.db3");
 
