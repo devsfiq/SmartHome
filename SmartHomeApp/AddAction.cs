@@ -13,6 +13,8 @@ namespace SmartHomeApp
 {
     public partial class AddAction : Form
     {
+        string[] lineOfContentForD;
+        string[] lineOfContentForM;
         public AddAction()
         {
             InitializeComponent();
@@ -21,8 +23,8 @@ namespace SmartHomeApp
         private void btnRefreshD_Click(object sender, EventArgs e)
         {
             cbDevice.Items.Clear();
-            string[] lineOfContents = File.ReadAllLines("modules.txt");
-            foreach (var line in lineOfContents)
+            lineOfContentForD = File.ReadAllLines("devices.txt");
+            foreach (var line in lineOfContentForD)
             {
                 string[] tokens = line.Split('|');
                 cbDevice.Items.Add(tokens[0]);
@@ -31,29 +33,53 @@ namespace SmartHomeApp
 
         private void AddAction_Load(object sender, EventArgs e)
         {
-            string[] lineOfContentForM = File.ReadAllLines("modules.txt");
+            lineOfContentForM = File.ReadAllLines("modules.txt");
             foreach (var line in lineOfContentForM)
             {
                 string[] tokens = line.Split('|');
-                cbDevice.Items.Add(tokens[0]);
+                cbModule.Items.Add(tokens[0]);
             }
 
-            string[] lineOfContentForD = File.ReadAllLines("modules.txt");
+            lineOfContentForD = File.ReadAllLines("devices.txt");
             foreach (var line in lineOfContentForD)
             {
                 string[] tokens = line.Split('|');
-                cbModule.Items.Add(tokens[0]);
+                cbDevice.Items.Add(tokens[0]);
             }
         }
 
         private void btnRefreshM_Click(object sender, EventArgs e)
         {
             cbModule.Items.Clear();
-            string[] lineOfContents = File.ReadAllLines("modules.txt");
-            foreach (var line in lineOfContents)
+            lineOfContentForM = File.ReadAllLines("modules.txt");
+            foreach (var line in lineOfContentForM)
             {
                 string[] tokens = line.Split('|');
                 cbModule.Items.Add(tokens[0]);
+            }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            if ((cbDevice.Text == "") || (cbModule.Text == "") || (cbAction.Text == ""))
+            {
+                MessageBox.Show("Please fill in the field ", "Error");
+            }
+            else
+            {
+                TextWriter txt = new StreamWriter(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\actions.txt", append: true);
+                try
+                {
+                    int numM = cbModule.SelectedIndex;
+                    int numD = cbDevice.SelectedIndex;
+                    txt.WriteLine(lineOfContentForD[numD] + "|" + lineOfContentForM[numM] + "|" + cbAction.Text);
+                    txt.Close();
+                    MessageBox.Show("Added action successfully!", "Success");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unable to add action! Exception: " + ex.ToString(), "Error");
+                }
             }
         }
     }

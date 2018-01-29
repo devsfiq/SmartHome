@@ -11,8 +11,10 @@ using System.Windows.Forms;
 
 namespace SmartHomeApp
 {
+
     public partial class RegisterDevice : Form
     {
+        string[] lineOfContents;
         String selectpath; 
         public RegisterDevice()
         {
@@ -21,7 +23,7 @@ namespace SmartHomeApp
 
         private void RegisterDevice_Load(object sender, EventArgs e)
         {
-            string[] lineOfContents = File.ReadAllLines("modules.txt");
+            lineOfContents = File.ReadAllLines("modules.txt");
             foreach (var line in lineOfContents)
             {
                 string[] tokens = line.Split('|');
@@ -45,7 +47,7 @@ namespace SmartHomeApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if ((tbDeviceName.Text == "")  || (ddlSelectDevice.Text == ""))
+            if ((tbDeviceName.Text == "") || (ddlSelectDevice.Text == "") || (lblMacAddress.Text == ""))
             {
                 MessageBox.Show("Please fill in the field and select the device", "Error");
             }
@@ -54,7 +56,8 @@ namespace SmartHomeApp
                 TextWriter txt = new StreamWriter(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\devices.txt", append: true);
                 try
                 {
-                    txt.WriteLine(tbDeviceName.Text + "|" + ddlSelectDevice.Text + "|");
+                    int num = ddlSelectDevice.SelectedIndex;
+                    txt.WriteLine(tbDeviceName.Text + "|" + lineOfContents[num]);
                     txt.Close();
                     MessageBox.Show("Added device successfully!", "Success");
                 }
@@ -64,6 +67,16 @@ namespace SmartHomeApp
                 }
             }
             
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void popuMacAddress(object sender, EventArgs e)
+        {
+
         }
     }
 }

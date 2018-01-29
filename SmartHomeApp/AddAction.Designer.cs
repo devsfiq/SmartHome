@@ -35,8 +35,10 @@
             this.btnRefreshD = new System.Windows.Forms.Button();
             this.btnRefreshM = new System.Windows.Forms.Button();
             this.lblSelectAction = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbAction = new System.Windows.Forms.ComboBox();
             this.btnApply = new System.Windows.Forms.Button();
+            this.lbl = new System.Windows.Forms.Label();
+            this.tbDuration = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblSelectDevice
@@ -75,7 +77,7 @@
             // 
             // btnRefreshD
             // 
-            this.btnRefreshD.Location = new System.Drawing.Point(342, 42);
+            this.btnRefreshD.Location = new System.Drawing.Point(342, 40);
             this.btnRefreshD.Name = "btnRefreshD";
             this.btnRefreshD.Size = new System.Drawing.Size(133, 27);
             this.btnRefreshD.TabIndex = 4;
@@ -85,7 +87,7 @@
             // 
             // btnRefreshM
             // 
-            this.btnRefreshM.Location = new System.Drawing.Point(342, 75);
+            this.btnRefreshM.Location = new System.Drawing.Point(342, 78);
             this.btnRefreshM.Name = "btnRefreshM";
             this.btnRefreshM.Size = new System.Drawing.Size(133, 27);
             this.btnRefreshM.TabIndex = 5;
@@ -102,33 +104,56 @@
             this.lblSelectAction.TabIndex = 6;
             this.lblSelectAction.Text = "Select Action :";
             // 
-            // comboBox1
+            // cbAction
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbAction.FormattingEnabled = true;
+            this.cbAction.Items.AddRange(new object[] {
             "open",
-            "exit"});
-            this.comboBox1.Location = new System.Drawing.Point(201, 113);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 7;
+            "exit",
+            "play",
+            "stop"});
+            this.cbAction.Location = new System.Drawing.Point(201, 113);
+            this.cbAction.Name = "cbAction";
+            this.cbAction.Size = new System.Drawing.Size(121, 24);
+            this.cbAction.TabIndex = 7;
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(201, 147);
+            this.btnApply.Location = new System.Drawing.Point(201, 259);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(121, 33);
             this.btnApply.TabIndex = 8;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Location = new System.Drawing.Point(89, 154);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(74, 17);
+            this.lbl.TabIndex = 9;
+            this.lbl.Text = "Duration : ";
+            this.lbl.Visible = false;
+            // 
+            // tbDuration
+            // 
+            this.tbDuration.Location = new System.Drawing.Point(201, 154);
+            this.tbDuration.Name = "tbDuration";
+            this.tbDuration.Size = new System.Drawing.Size(121, 22);
+            this.tbDuration.TabIndex = 10;
+            this.tbDuration.Visible = false;
             // 
             // AddAction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(670, 321);
+            this.Controls.Add(this.tbDuration);
+            this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbAction);
             this.Controls.Add(this.lblSelectAction);
             this.Controls.Add(this.btnRefreshM);
             this.Controls.Add(this.btnRefreshD);
@@ -153,7 +178,9 @@
         private System.Windows.Forms.Button btnRefreshD;
         private System.Windows.Forms.Button btnRefreshM;
         private System.Windows.Forms.Label lblSelectAction;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbAction;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.TextBox tbDuration;
     }
 }

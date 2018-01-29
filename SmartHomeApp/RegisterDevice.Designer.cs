@@ -34,6 +34,8 @@
             this.btnSelectDevice = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.ddlSelectDevice = new System.Windows.Forms.ComboBox();
+            this.lblMacAddress = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblDeviceName
@@ -50,7 +52,7 @@
             this.tbDeviceName.Location = new System.Drawing.Point(159, 25);
             this.tbDeviceName.Multiline = true;
             this.tbDeviceName.Name = "tbDeviceName";
-            this.tbDeviceName.Size = new System.Drawing.Size(118, 20);
+            this.tbDeviceName.Size = new System.Drawing.Size(121, 20);
             this.tbDeviceName.TabIndex = 1;
             // 
             // lblSelectDevice
@@ -74,7 +76,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(159, 111);
+            this.btnAdd.Location = new System.Drawing.Point(159, 178);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(121, 34);
             this.btnAdd.TabIndex = 5;
@@ -89,12 +91,33 @@
             this.ddlSelectDevice.Name = "ddlSelectDevice";
             this.ddlSelectDevice.Size = new System.Drawing.Size(121, 24);
             this.ddlSelectDevice.TabIndex = 6;
+            this.ddlSelectDevice.SelectedIndexChanged += new System.EventHandler(this.popuMacAddress);
+            // 
+            // lblMacAddress
+            // 
+            this.lblMacAddress.AutoSize = true;
+            this.lblMacAddress.Location = new System.Drawing.Point(39, 116);
+            this.lblMacAddress.Name = "lblMacAddress";
+            this.lblMacAddress.Size = new System.Drawing.Size(102, 17);
+            this.lblMacAddress.TabIndex = 7;
+            this.lblMacAddress.Text = "Mac Address : ";
+            this.lblMacAddress.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(159, 116);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(121, 22);
+            this.textBox1.TabIndex = 8;
             // 
             // RegisterDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 336);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblMacAddress);
             this.Controls.Add(this.ddlSelectDevice);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSelectDevice);
@@ -117,5 +140,7 @@
         private System.Windows.Forms.Button btnSelectDevice;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox ddlSelectDevice;
+        private System.Windows.Forms.Label lblMacAddress;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
