@@ -59,17 +59,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="AddAction.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddAction.Designer.cs">
       <DependentUpon>AddAction.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddModule.cs">
-=======
-    <Compile Include="ManageModules.cs">
->>>>>>> upstream/master
+	<Compile Include="ManageModules.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManageModules.Designer.cs">
@@ -89,16 +85,11 @@
     </Compile>
     <Compile Include="SmartHome.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <EmbeddedResource Include="AddAction.resx">
       <DependentUpon>AddAction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddModule.resx">
-      <DependentUpon>AddModule.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="ManageModules.resx">
+	<EmbeddedResource Include="ManageModules.resx">
       <DependentUpon>ManageModules.cs</DependentUpon>
->>>>>>> upstream/master
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -112,13 +103,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <EmbeddedResource Include="RegisterDevice.resx">
       <DependentUpon>RegisterDevice.cs</DependentUpon>
     </EmbeddedResource>
-=======
     <None Include="packages.config" />
->>>>>>> upstream/master
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
