@@ -53,5 +53,27 @@ namespace SmartHomeApp
             ManageModules form = new ManageModules();
             form.Show();
         }
+<<<<<<< HEAD
+
+        private void btnRegisterArduino_Click(object sender, EventArgs e)
+        {
+            RegisterDevice form = new RegisterDevice();
+            form.Show();
+        }
+
+        private void lblAddAction_Click(object sender, EventArgs e)
+        {
+            AddAction form = new AddAction();
+            form.Show();
+        }
+
+        /* private void btnAddModule_Click(object sender, EventArgs e)
+        {
+            AddModule form = new AddModule();
+            form.Show();
+        } */
+
+=======
+>>>>>>> upstream/master
     }
 }
