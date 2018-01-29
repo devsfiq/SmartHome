@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -35,7 +37,7 @@ namespace SmartHomeApp
             new Action(
                 () =>
                 {
-                    OutputTB.Text += $"[{DateTime.Now}] Received GET Request /{command}{Environment.NewLine}";
+                    OutputTB.Text += $"[{DateTime.Now}] Received Request /{command}{Environment.NewLine}";
                 }
             ));
             //MessageBox.Show($"Command Received: {command}", "Smart Home Server");
@@ -46,11 +48,12 @@ namespace SmartHomeApp
             Server.Stop();
         }
 
-        private void btnAddModule_Click(object sender, EventArgs e)
+        private void btnManageModule_Click(object sender, EventArgs e)
         {
-            AddModule form = new AddModule();
+            ManageModules form = new ManageModules();
             form.Show();
         }
+<<<<<<< HEAD
 
         private void btnRegisterArduino_Click(object sender, EventArgs e)
         {
@@ -70,5 +73,7 @@ namespace SmartHomeApp
             form.Show();
         } */
 
+=======
+>>>>>>> upstream/master
     }
 }
