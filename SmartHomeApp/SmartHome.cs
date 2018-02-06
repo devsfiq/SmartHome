@@ -21,6 +21,7 @@ namespace SmartHomeApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+            //Application.Run(new ConsoleForm());
 
             string createQuery = @"CREATE TABLE IF NOT EXISTS [Modules] ([Id] INTEGER PRIMARY KEY, [Command] NVARCHAR(256) UNIQUE NOT NULL, [Path] NVARCHAR(2048) NOT NULL, [Args] NVARCHAR(256) NULL)";
 

@@ -26,6 +26,7 @@ namespace SmartHomeApp
 
         private void btnSelectDevice_Click(object sender, EventArgs e)
         {
+            MainForm.Server.ConnectedHosts = MainForm.Server.GetNetworkInfo().ToList();
             ddlSelectDevice.DataSource = MainForm.Server.ConnectedHosts;
             ddlSelectDevice.DisplayMember = "IP";
             ddlSelectDevice.ValueMember = "MAC";

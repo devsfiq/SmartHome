@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,10 +20,10 @@ namespace SmartHomeApp
         {
             InitializeComponent();
 
-            Server = new SmartHomeServer("127.0.0.1", 3000);
+            Server = new SmartHomeServer(IPAddress.Any, 3000);
             Server.Start((command) =>
             {
-
+                MessageBox.Show(command);
             });
         }
 
@@ -39,6 +40,11 @@ namespace SmartHomeApp
         private void resgisterBtn_Click(object sender, EventArgs e)
         {
             new RegisterDevice().Show();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Server.Stop();
         }
     }
 }

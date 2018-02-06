@@ -65,54 +65,33 @@ namespace SmartHomeLib
 
         private void RunListenerThread()
         {
+
             Listener.Start();
-            ConnectedHosts = GetNetworkInfo().ToList();
+            //ConnectedHosts = GetNetworkInfo().ToList();
 
             while (true)
             {
                 Socket client = Listener.AcceptSocket();
                 var childSocketThread = new Thread(() =>
                 {
-                    //++count;
                     String request = "";
 
-                    byte[] data = new byte[1024];
-                    int size = client.Receive(data);
+                byte[] data = new byte[102400];
+                int size = 0;
 
-                    for (int i = 0; i < size; i++)
+                do
+                {
+                    size = client.Receive(data);
+                    request += Encoding.ASCII.GetString(data, 0, size);
+                } while (client.Available > 0);
+
+                //onReceiveCommand(request);
+                ThreadPool.QueueUserWorkItem(delegate
                     {
-                        Char c = Convert.ToChar(data[i]);
-                        request += c;
-                    }
+                        onReceiveCommand(request);
+                    }, request);
 
-                    if (request == "NETWORK_CHANGED")
-                    {
-                        String status = "ENTERED_NETWORK";
-
-                        List<Host> updatedNetworkInfo = GetNetworkInfo().ToList();
-                        var newlyConnectedHosts = updatedNetworkInfo.Except(ConnectedHosts, new HostComparer());
-                        var newlyDisconnectedHosts =  ConnectedHosts.Except(updatedNetworkInfo, new HostComparer());
-                        var query = newlyConnectedHosts.Except(newlyDisconnectedHosts).Union(newlyDisconnectedHosts.Except(newlyConnectedHosts));
-
-                        if(newlyDisconnectedHosts.Count() > 0)
-                        {
-                            status = "EXITED_NETWORK";
-                        }
-
-                        ConnectedHosts = updatedNetworkInfo;
-                        foreach (var host in query)
-                        {
-                            ThreadPool.QueueUserWorkItem(delegate
-                            {
-                                onReceiveCommand($"{status} IP: {host.IP}, MAC: {host.MAC}");
-                            }, request);
-                        }
-
-                        ThreadPool.QueueUserWorkItem(delegate
-                        {
-                            onReceiveCommand(request);
-                        }, request);
-                    }
+                    client.Close();
                 });
                 childSocketThread.Start();
             }
@@ -130,20 +109,20 @@ namespace SmartHomeLib
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     var xml = XDocument.Load(stream);
-                    var tmp = xml.Descendants("host").Descendants("address").Where(addr => addr.Attribute("addrtype").Value == "mac").Select(x => x.Parent);
+                    var tmp = xml.Descendants("host");
 
                     foreach (var node in tmp)
                     {
                         hosts.Add(new Host()
                         {
-                            IP = node.Descendants("address").Where(addr => addr.Attribute("addrtype").Value == "ipv4").First().Attribute("addr").Value,
-                            MAC = node.Descendants("address").Where(addr => addr.Attribute("addrtype").Value == "mac").First().Attribute("addr").Value
+                            IP = node.Descendants("ip").FirstOrDefault().Value,
+                            MAC = node.Descendants("mac").FirstOrDefault().Value
                         });
                     }
                 }
             } catch (Exception ex)
             {
-                //[TODO] Handle Error
+                //[TODO] Handle     
             }
             return hosts;
         }

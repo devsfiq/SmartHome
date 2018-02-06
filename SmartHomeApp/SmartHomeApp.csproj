@@ -65,7 +65,13 @@
     <Compile Include="AddAction.Designer.cs">
       <DependentUpon>AddAction.cs</DependentUpon>
     </Compile>
-	<Compile Include="ManageModules.cs">
+    <Compile Include="ConsoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsoleForm.Designer.cs">
+      <DependentUpon>ConsoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageModules.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManageModules.Designer.cs">
@@ -88,7 +94,10 @@
     <EmbeddedResource Include="AddAction.resx">
       <DependentUpon>AddAction.cs</DependentUpon>
     </EmbeddedResource>
-	<EmbeddedResource Include="ManageModules.resx">
+    <EmbeddedResource Include="ConsoleForm.resx">
+      <DependentUpon>ConsoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageModules.resx">
       <DependentUpon>ManageModules.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
