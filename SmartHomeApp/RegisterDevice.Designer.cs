@@ -35,7 +35,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.ddlSelectDevice = new System.Windows.Forms.ComboBox();
             this.lblMacAddress = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbMacAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblDeviceName
@@ -91,7 +91,7 @@
             this.ddlSelectDevice.Name = "ddlSelectDevice";
             this.ddlSelectDevice.Size = new System.Drawing.Size(121, 24);
             this.ddlSelectDevice.TabIndex = 6;
-            this.ddlSelectDevice.SelectedIndexChanged += new System.EventHandler(this.popuMacAddress);
+            this.ddlSelectDevice.SelectedIndexChanged += new System.EventHandler(this.populateMacAddress);
             // 
             // lblMacAddress
             // 
@@ -103,20 +103,20 @@
             this.lblMacAddress.Text = "Mac Address : ";
             this.lblMacAddress.Click += new System.EventHandler(this.label1_Click);
             // 
-            // textBox1
+            // tbMacAddress
             // 
-            this.textBox1.Location = new System.Drawing.Point(159, 116);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 8;
+            this.tbMacAddress.Location = new System.Drawing.Point(159, 116);
+            this.tbMacAddress.Name = "tbMacAddress";
+            this.tbMacAddress.ReadOnly = true;
+            this.tbMacAddress.Size = new System.Drawing.Size(121, 22);
+            this.tbMacAddress.TabIndex = 8;
             // 
             // RegisterDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 336);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbMacAddress);
             this.Controls.Add(this.lblMacAddress);
             this.Controls.Add(this.ddlSelectDevice);
             this.Controls.Add(this.btnAdd);
@@ -141,6 +141,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox ddlSelectDevice;
         private System.Windows.Forms.Label lblMacAddress;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbMacAddress;
     }
 }

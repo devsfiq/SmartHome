@@ -66,6 +66,7 @@ namespace SmartHomeLib
         private void RunListenerThread()
         {
             Listener.Start();
+            ConnectedHosts = GetNetworkInfo().ToList();
 
             while (true)
             {

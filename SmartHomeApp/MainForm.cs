@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartHomeLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,17 @@ namespace SmartHomeApp
 {
     public partial class MainForm : Form
     {
+        public static SmartHomeServer Server;
+
         public MainForm()
         {
             InitializeComponent();
+
+            Server = new SmartHomeServer("127.0.0.1", 3000);
+            Server.Start((command) =>
+            {
+
+            });
         }
 
         private void addActionBTN_Click(object sender, EventArgs e)

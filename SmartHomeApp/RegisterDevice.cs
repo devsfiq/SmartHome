@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartHomeLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +15,6 @@ namespace SmartHomeApp
 
     public partial class RegisterDevice : Form
     {
-        string[] lineOfContents;
-        String selectpath; 
         public RegisterDevice()
         {
             InitializeComponent();
@@ -23,31 +22,18 @@ namespace SmartHomeApp
 
         private void RegisterDevice_Load(object sender, EventArgs e)
         {
-            lineOfContents = File.ReadAllLines("modules.txt");
-            foreach (var line in lineOfContents)
-            {
-                string[] tokens = line.Split('|');
-                ddlSelectDevice.Items.Add(tokens[0]);
-            }
         }
-
-        
 
         private void btnSelectDevice_Click(object sender, EventArgs e)
         {
-            ddlSelectDevice.Items.Clear();
-            string[] lineOfContents = File.ReadAllLines("modules.txt");
-            foreach (var line in lineOfContents)
-            {
-                string[] tokens = line.Split('|');
-                ddlSelectDevice.Items.Add(tokens[0]);
-
-            }
+            ddlSelectDevice.DataSource = MainForm.Server.ConnectedHosts;
+            ddlSelectDevice.DisplayMember = "IP";
+            ddlSelectDevice.ValueMember = "MAC";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if ((tbDeviceName.Text == "") || (ddlSelectDevice.Text == "") || (lblMacAddress.Text == ""))
+            if ((tbDeviceName.Text == "") || (ddlSelectDevice.SelectedValue == null))
             {
                 MessageBox.Show("Please fill in the field and select the device", "Error");
             }
@@ -57,7 +43,7 @@ namespace SmartHomeApp
                 try
                 {
                     int num = ddlSelectDevice.SelectedIndex;
-                    txt.WriteLine(tbDeviceName.Text + "|" + lineOfContents[num]);
+                    txt.WriteLine(tbDeviceName.Text + "|" + ddlSelectDevice.SelectedValue.ToString());
                     txt.Close();
                     MessageBox.Show("Added device successfully!", "Success");
                 }
@@ -74,9 +60,9 @@ namespace SmartHomeApp
 
         }
 
-        private void popuMacAddress(object sender, EventArgs e)
+        private void populateMacAddress(object sender, EventArgs e)
         {
-
+            tbMacAddress.Text = ddlSelectDevice.SelectedValue.ToString();
         }
     }
 }
