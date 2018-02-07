@@ -31,7 +31,6 @@
             this.lblDeviceName = new System.Windows.Forms.Label();
             this.tbDeviceName = new System.Windows.Forms.TextBox();
             this.lblSelectDevice = new System.Windows.Forms.Label();
-            this.btnSelectDevice = new System.Windows.Forms.Button();
             this.ddlSelectDevice = new System.Windows.Forms.ComboBox();
             this.lblMacAddress = new System.Windows.Forms.Label();
             this.tbMac = new System.Windows.Forms.TextBox();
@@ -69,17 +68,6 @@
             this.lblSelectDevice.TabIndex = 2;
             this.lblSelectDevice.Text = "Select Device :";
             // 
-            // btnSelectDevice
-            // 
-            this.btnSelectDevice.Location = new System.Drawing.Point(269, 143);
-            this.btnSelectDevice.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSelectDevice.Name = "btnSelectDevice";
-            this.btnSelectDevice.Size = new System.Drawing.Size(82, 30);
-            this.btnSelectDevice.TabIndex = 4;
-            this.btnSelectDevice.Text = "Refresh";
-            this.btnSelectDevice.UseVisualStyleBackColor = true;
-            this.btnSelectDevice.Click += new System.EventHandler(this.btnSelectDevice_Click);
-            // 
             // ddlSelectDevice
             // 
             this.ddlSelectDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -87,6 +75,7 @@
             this.ddlSelectDevice.Name = "ddlSelectDevice";
             this.ddlSelectDevice.Size = new System.Drawing.Size(121, 24);
             this.ddlSelectDevice.TabIndex = 6;
+            this.ddlSelectDevice.SelectedIndexChanged += new System.EventHandler(this.ddlSelectDevice_SelectedIndexChanged);
             // 
             // lblMacAddress
             // 
@@ -174,7 +163,6 @@
             this.Controls.Add(this.tbMac);
             this.Controls.Add(this.lblMacAddress);
             this.Controls.Add(this.ddlSelectDevice);
-            this.Controls.Add(this.btnSelectDevice);
             this.Controls.Add(this.lblSelectDevice);
             this.Controls.Add(this.tbDeviceName);
             this.Controls.Add(this.lblDeviceName);
@@ -192,7 +180,6 @@
         private System.Windows.Forms.Label lblDeviceName;
         private System.Windows.Forms.TextBox tbDeviceName;
         private System.Windows.Forms.Label lblSelectDevice;
-        private System.Windows.Forms.Button btnSelectDevice;
         private System.Windows.Forms.ComboBox ddlSelectDevice;
         private System.Windows.Forms.Label lblMacAddress;
         private System.Windows.Forms.TextBox tbMac;

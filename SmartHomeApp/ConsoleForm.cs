@@ -25,12 +25,7 @@ namespace SmartHomeApp
         private void ConsoleForm_Load(object sender, EventArgs e)
         {
             Server = new SmartHomeServer(IPAddress.Any, 3000);
-            Server.Start((command) =>
-            {
-                Invoke(new Action(() => {
-                    tbConsole.AppendText(command);
-                }));
-            });
+            //Server.Start();
         }
 
         private void ConsoleForm_FormClosed(object sender, FormClosedEventArgs e)

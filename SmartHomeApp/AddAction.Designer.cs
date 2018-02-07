@@ -37,8 +37,6 @@
             this.lblSelectAction = new System.Windows.Forms.Label();
             this.cbAction = new System.Windows.Forms.ComboBox();
             this.btnApply = new System.Windows.Forms.Button();
-            this.lbl = new System.Windows.Forms.Label();
-            this.tbDuration = new System.Windows.Forms.TextBox();
             this.dgvModules = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
@@ -116,10 +114,8 @@
             this.cbAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAction.FormattingEnabled = true;
             this.cbAction.Items.AddRange(new object[] {
-            "Open",
-            "Exit",
-            "Play",
-            "Stop"});
+            "Enter",
+            "Exit"});
             this.cbAction.Location = new System.Drawing.Point(147, 169);
             this.cbAction.Name = "cbAction";
             this.cbAction.Size = new System.Drawing.Size(121, 24);
@@ -134,24 +130,6 @@
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
-            // 
-            // lbl
-            // 
-            this.lbl.AutoSize = true;
-            this.lbl.Location = new System.Drawing.Point(35, 210);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(74, 17);
-            this.lbl.TabIndex = 9;
-            this.lbl.Text = "Duration : ";
-            this.lbl.Visible = false;
-            // 
-            // tbDuration
-            // 
-            this.tbDuration.Location = new System.Drawing.Point(147, 210);
-            this.tbDuration.Name = "tbDuration";
-            this.tbDuration.Size = new System.Drawing.Size(121, 22);
-            this.tbDuration.TabIndex = 10;
-            this.tbDuration.Visible = false;
             // 
             // dgvModules
             // 
@@ -207,8 +185,6 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvModules);
-            this.Controls.Add(this.tbDuration);
-            this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.cbAction);
             this.Controls.Add(this.lblSelectAction);
@@ -238,8 +214,6 @@
         private System.Windows.Forms.Label lblSelectAction;
         private System.Windows.Forms.ComboBox cbAction;
         private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.Label lbl;
-        private System.Windows.Forms.TextBox tbDuration;
         private System.Windows.Forms.DataGridView dgvModules;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblId;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -13,23 +15,23 @@ namespace SmartHomeLib
 {
     public class SmartHomeServer
     {
-        public delegate void OnReceiveCommand(string command); // Callback Method
+        public delegate void OnReceiveCommand(List<Host> newlyConnected, List<Host> newlyDisconnected); // Callback Method
 
         public readonly string Ip;
         public readonly int Port;
 
-        public List<Host> ConnectedHosts;
+        public BindingList<Host> ConnectedHosts;
 
         private Thread listenerThread;
         private TcpListener Listener;
-        private OnReceiveCommand onReceiveCommand;
-        //private int count;
+
+        public OnReceiveCommand onReceiveCommand;
 
         public SmartHomeServer(string ip, int port)
         {
             Ip = ip;
             Port = port;
-            ConnectedHosts = new List<Host>();
+            ConnectedHosts = new BindingList<Host>();
             Listener = new TcpListener(IPAddress.Parse(ip), port);
         }
 
@@ -37,23 +39,15 @@ namespace SmartHomeLib
         {
             Ip = ip.ToString();
             Port = port;
-            ConnectedHosts = new List<Host>();
+            ConnectedHosts = new BindingList<Host>();
             Listener = new TcpListener(ip, port);
         }
 
         public void Start(OnReceiveCommand onReceiveCommand)
         {
-            try
-            {
-                this.onReceiveCommand = onReceiveCommand;
-                //count = 0;
-
-                listenerThread = new Thread(RunListenerThread);
-                listenerThread.Start();
-            } catch(Exception ex)
-            {
-                //[TODO] Handle Error (Port is busy)
-            }
+            this.onReceiveCommand = onReceiveCommand;
+            listenerThread = new Thread(RunListenerThread);
+            listenerThread.Start();
         }
 
 
@@ -72,37 +66,58 @@ namespace SmartHomeLib
             while (true)
             {
                 Socket client = Listener.AcceptSocket();
-                var childSocketThread = new Thread(() =>
-                {
+                //var childSocketThread = new Thread(() =>
+                //{
                     String request = "";
 
-                byte[] data = new byte[102400];
-                int size = 0;
+                    byte[] data = new byte[102400];
+                    int size = 0;
 
-                do
-                {
-                    size = client.Receive(data);
-                    request += Encoding.ASCII.GetString(data, 0, size);
-                } while (client.Available > 0);
-
-                //onReceiveCommand(request);
-                ThreadPool.QueueUserWorkItem(delegate
+                    do
                     {
-                        onReceiveCommand(request);
-                    }, request);
+                        size = client.Receive(data);
+                        request += Encoding.ASCII.GetString(data, 0, size);
+                    } while (client.Available > 0);
+
+                    //onReceiveCommand(request);
+                    List<Host> updatedNetworkInfo = new List<Host>();
+                    //ConnectedHosts.Clear();
+
+                    var xml = XDocument.Parse(request.Trim());
+                    var tmp = xml.Descendants("host");
+
+                    foreach (var node in tmp)
+                    {
+                        updatedNetworkInfo.Add(new Host()
+                        {
+                            IP = node.Descendants("ip").FirstOrDefault().Value,
+                            MAC = node.Descendants("mac").FirstOrDefault().Value
+                        });
+                    }
+
+                    var newlyConnectedHosts = updatedNetworkInfo.Except(ConnectedHosts, new HostComparer()).ToList();
+                    var newlyDisconnectedHosts = ConnectedHosts.Except(updatedNetworkInfo, new HostComparer()).ToList();
+                    //var query = newlyConnectedHosts.Except(newlyDisconnectedHosts).Union(newlyDisconnectedHosts.Except(newlyConnectedHosts)).ToList();
+
+                    ConnectedHosts.Clear();
+                    foreach (Host host in updatedNetworkInfo)
+                        ConnectedHosts.Add(host);
+
+                    onReceiveCommand(newlyConnectedHosts, newlyDisconnectedHosts);
 
                     client.Close();
-                });
-                childSocketThread.Start();
+                //});
+                //childSocketThread.Start();
             }
         }
 
+        [Obsolete]
         public IEnumerable<Host> GetNetworkInfo()
         {
             List<Host> hosts = new List<Host>();
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.43.100/arduino/scan");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.1.2/arduino/scan");
 
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (Stream stream = response.GetResponseStream())

@@ -12,12 +12,12 @@ namespace SmartHomeConsoleTest
     {
         static void Main(string[] args)
         {
-            SmartHomeServer server = new SmartHomeServer(IPAddress.Any, 3000);
-            server.Start((command) =>
-            {
-                Console.WriteLine(command);
-                Console.WriteLine();
-            });
+            //SmartHomeServer server = new SmartHomeServer(IPAddress.Any, 3000);
+            //server.Start((command) =>
+            //{
+            //    Console.WriteLine(command);
+            //    Console.WriteLine();
+            //});
         }
     }
 }

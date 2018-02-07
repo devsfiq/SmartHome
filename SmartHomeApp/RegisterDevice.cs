@@ -38,18 +38,15 @@ namespace SmartHomeApp
 
         private void RegisterDevice_Load(object sender, EventArgs e)
         {
-            tbDeviceName.Text = "Acer";
-            tbMac.Text = "13:34:32:21:21:22";
-        }
-
-        private void btnSelectDevice_Click(object sender, EventArgs e)
-        {
-            MainForm.Server.ConnectedHosts = MainForm.Server.GetNetworkInfo().ToList();
             ddlSelectDevice.DataSource = MainForm.Server.ConnectedHosts;
             ddlSelectDevice.DisplayMember = "IP";
             ddlSelectDevice.ValueMember = "MAC";
-        }
 
+            if(ddlSelectDevice.SelectedValue !=  null)
+            {
+                tbMac.Text = ddlSelectDevice.SelectedValue.ToString();
+            }
+        }
 
         private void dgvModules_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -189,6 +186,14 @@ namespace SmartHomeApp
             finally
             {
                 conn.Close();
+            }
+        }
+
+        private void ddlSelectDevice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSelectDevice.SelectedValue != null)
+            {
+                tbMac.Text = ddlSelectDevice.SelectedValue.ToString();
             }
         }
     }
