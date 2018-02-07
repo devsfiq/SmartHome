@@ -40,10 +40,10 @@
             // addActionBTN
             // 
             this.addActionBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.addActionBTN.Location = new System.Drawing.Point(201, 221);
-            this.addActionBTN.Margin = new System.Windows.Forms.Padding(2);
+            this.addActionBTN.Location = new System.Drawing.Point(268, 272);
+            this.addActionBTN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addActionBTN.Name = "addActionBTN";
-            this.addActionBTN.Size = new System.Drawing.Size(75, 26);
+            this.addActionBTN.Size = new System.Drawing.Size(100, 32);
             this.addActionBTN.TabIndex = 0;
             this.addActionBTN.Text = "Add";
             this.addActionBTN.UseVisualStyleBackColor = true;
@@ -52,10 +52,10 @@
             // manageModulesBTN
             // 
             this.manageModulesBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.manageModulesBTN.Location = new System.Drawing.Point(201, 94);
-            this.manageModulesBTN.Margin = new System.Windows.Forms.Padding(2);
+            this.manageModulesBTN.Location = new System.Drawing.Point(268, 116);
+            this.manageModulesBTN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.manageModulesBTN.Name = "manageModulesBTN";
-            this.manageModulesBTN.Size = new System.Drawing.Size(75, 26);
+            this.manageModulesBTN.Size = new System.Drawing.Size(100, 32);
             this.manageModulesBTN.TabIndex = 1;
             this.manageModulesBTN.Text = "Manage";
             this.manageModulesBTN.UseVisualStyleBackColor = true;
@@ -64,9 +64,10 @@
             // resgisterBtn
             // 
             this.resgisterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.resgisterBtn.Location = new System.Drawing.Point(201, 158);
+            this.resgisterBtn.Location = new System.Drawing.Point(268, 194);
+            this.resgisterBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.resgisterBtn.Name = "resgisterBtn";
-            this.resgisterBtn.Size = new System.Drawing.Size(75, 26);
+            this.resgisterBtn.Size = new System.Drawing.Size(100, 32);
             this.resgisterBtn.TabIndex = 2;
             this.resgisterBtn.Text = "Register";
             this.resgisterBtn.UseVisualStyleBackColor = true;
@@ -76,9 +77,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(30, 96);
+            this.label1.Location = new System.Drawing.Point(40, 118);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 20);
+            this.label1.Size = new System.Drawing.Size(160, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "Manage Actions:";
             // 
@@ -86,9 +88,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label2.Location = new System.Drawing.Point(29, 34);
+            this.label2.Location = new System.Drawing.Point(39, 42);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(247, 25);
+            this.label2.Size = new System.Drawing.Size(321, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "AllSmart Home Automation";
             // 
@@ -96,9 +99,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(30, 158);
+            this.label3.Location = new System.Drawing.Point(40, 194);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 20);
+            this.label3.Size = new System.Drawing.Size(135, 25);
             this.label3.TabIndex = 5;
             this.label3.Text = "Register User:";
             // 
@@ -106,17 +110,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(30, 221);
+            this.label4.Location = new System.Drawing.Point(40, 272);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(149, 20);
+            this.label4.Size = new System.Drawing.Size(184, 25);
             this.label4.TabIndex = 6;
             this.label4.Text = "Map Action to User:";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 307);
+            this.ClientSize = new System.Drawing.Size(817, 378);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -124,9 +129,10 @@
             this.Controls.Add(this.resgisterBtn);
             this.Controls.Add(this.manageModulesBTN);
             this.Controls.Add(this.addActionBTN);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

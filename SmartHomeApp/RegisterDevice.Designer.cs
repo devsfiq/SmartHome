@@ -41,6 +41,7 @@
             this.lblId = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModules)).BeginInit();
+            this.tbMacAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblDeviceName
@@ -87,7 +88,7 @@
             this.ddlSelectDevice.Name = "ddlSelectDevice";
             this.ddlSelectDevice.Size = new System.Drawing.Size(121, 24);
             this.ddlSelectDevice.TabIndex = 6;
-            this.ddlSelectDevice.SelectedIndexChanged += new System.EventHandler(this.popuMacAddress);
+            this.ddlSelectDevice.SelectedIndexChanged += new System.EventHandler(this.populateMacAddress);
             // 
             // lblMacAddress
             // 
@@ -161,6 +162,13 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // tbMacAddress
+            // 
+            this.tbMacAddress.Location = new System.Drawing.Point(159, 116);
+            this.tbMacAddress.Name = "tbMacAddress";
+            this.tbMacAddress.ReadOnly = true;
+            this.tbMacAddress.Size = new System.Drawing.Size(121, 22);
+            this.tbMacAddress.TabIndex = 8;
             // 
             // RegisterDevice
             // 

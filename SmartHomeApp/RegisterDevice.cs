@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartHomeLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +15,6 @@ namespace SmartHomeApp
 {
     public partial class RegisterDevice : Form
     {
-        string[] lineOfContents;
-        String selectpath; 
         public RegisterDevice()
         {
             InitializeComponent();
@@ -43,18 +42,12 @@ namespace SmartHomeApp
             tbMac.Text = "13:34:32:21:21:22";
         }
 
-        
-
         private void btnSelectDevice_Click(object sender, EventArgs e)
         {
-            ddlSelectDevice.Items.Clear();
-            string[] lineOfContents = File.ReadAllLines("devices.txt");
-            foreach (var line in lineOfContents)
-            {
-                string[] tokens = line.Split('|');
-                ddlSelectDevice.Items.Add(tokens[0]);
-
-            }
+            MainForm.Server.ConnectedHosts = MainForm.Server.GetNetworkInfo().ToList();
+            ddlSelectDevice.DataSource = MainForm.Server.ConnectedHosts;
+            ddlSelectDevice.DisplayMember = "IP";
+            ddlSelectDevice.ValueMember = "MAC";
         }
 
 
@@ -169,7 +162,6 @@ namespace SmartHomeApp
                 conn.Close();
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             SQLiteConnection conn = new SQLiteConnection("data source=SmartHomeDB.db3");
