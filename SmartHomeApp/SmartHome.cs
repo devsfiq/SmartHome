@@ -24,6 +24,10 @@ namespace SmartHomeApp
             //Application.Run(new ConsoleForm());
 
             string createQuery = @"CREATE TABLE IF NOT EXISTS [Modules] ([Id] INTEGER PRIMARY KEY, [Command] NVARCHAR(256) UNIQUE NOT NULL, [Path] NVARCHAR(2048) NOT NULL, [Args] NVARCHAR(256) NULL)";
+            string createDeviceQuery = @"CREATE TABLE IF NOT EXISTS [Devices] ([DId] INTEGER PRIMARY KEY, [DeviceName] NVARCHAR(256) UNIQUE NOT NULL, [MacAddress] NVARCHAR(256) NOT NULL)";
+            string createActionQuery = @"CREATE TABLE IF NOT EXISTS [Actions] ([AId] INTEGER PRIMARY KEY, [DeviceName] NVARCHAR(256) UNIQUE NOT NULL, [Command] NVARCHAR(256) UNIQUE NOT NULL, [Action] NVARCHAR(256) NOT NULL)";
+
+            StreamWriter w = File.AppendText("devices.txt");
 
             SQLiteConnection.CreateFile("SmartHomeDB.db3");
 
@@ -34,6 +38,11 @@ namespace SmartHomeApp
                     conn.Open();
                     cmd.CommandText = createQuery;
                     cmd.ExecuteNonQuery();
+                    cmd.CommandText = createDeviceQuery;
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = createActionQuery;
+                    cmd.ExecuteNonQuery();
+
                 }
             }
         }
