@@ -17,7 +17,7 @@
 
 const int B = 4275;               // B value of the thermistor
 const int R0 = 100000;            // R0 = 100k
-const int pinTempSensor = A2;     // Grove - Temperature Sensor connect to A5
+const int pinTempSensor = A3;     // Grove - Temperature Sensor connect to A5
 const int pinSoundSensor = A0;
 int scounter = 0;
 void setup()
@@ -36,11 +36,11 @@ void loop()
     float temperature = 1.0/(log(R/R0)/B+1/298.15)-273.15; // convert to temperature via datasheet
 
     if (temperature > 30) {
-      digitalWrite(3,1);
+      digitalWrite(2,1);
     }
 
     if (temperature < 26) {
-      digitalWrite(3,0);
+      digitalWrite(2,0);
     }
 
     if (s > 1) {
